@@ -1,2 +1,10 @@
 npm init
 npm install express@version --save
+
+
+git init
+git status
+git add -A
+git commit -m "First commit"
+git remote add origin https://github.com/brijesh-nodejs/node-web-server.git
+git push origin master
