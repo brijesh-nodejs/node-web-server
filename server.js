@@ -2,7 +2,7 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials')
@@ -13,7 +13,8 @@ app.use((req, res, next) => {
   var log = `${now}: ${req.method} ${req.url}`;
 
   console.log(log);
-  fs.appendFile('server.log', log + '\n');
+  //fs.appendFile('server.log', log + '\n', (error)=>{if(error) console.log(error)});
+  fs.appendFile('server.log', log + '\n' , (error)=>{if(error) console.log(error)} );
   next();
 });
 
@@ -50,6 +51,9 @@ app.get('/bad', (req, res) => {
     errorMessage: 'Unable to handle request'
   });
 });
+
+console.log('app >>>>> ', app );
+console.log('Starting server on port : ', port );
 
 app.listen(port, () => {
   console.log(`Server is up on port ${port}`);
